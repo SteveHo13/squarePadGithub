@@ -1,9 +1,19 @@
 pipeline {
-    stages {
-        stage('Build') { 
+     agent any
+     environment { 
+        CI = 'true'
+    }
+     stages {
+        stage("Build") {
             steps {
-                sh 'npm install' 
-                sh 'npm run build' 
+                sh "npm install --force"
+                sh "npm run build"
+            }
+        }
+        stage("Deploy") {
+            steps {
+                 echo "Dep"
+                //sh "sudo cp -r ${WORKSPACE}/build/ /var/www/jenkins-react-app-school/"
             }
         }
     }
